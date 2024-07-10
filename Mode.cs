@@ -9,6 +9,7 @@ namespace RoboUI2
     internal enum Mode
     {
         preload, // nic
+        loaded, // nic
         ingame, // pole, jména, ne skóre, čas
         counting, // ne pole, jména, ne skóre, ne čas
         results, // jen jména a skóre
