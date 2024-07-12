@@ -29,6 +29,7 @@ namespace RoboUI2 {
 
         private async void sreset_Click(object sender, EventArgs e) {
             await SendCommand("/api/reset");
+            await Reset();
         }
         private async void reset_click(object sender, EventArgs e) {
             await Reset();
@@ -134,7 +135,7 @@ namespace RoboUI2 {
 
         int a = 0, b = 0, c = 0, d = 0;
         private async Task UpdateScore() {
-            await SendCommand("/api/balls", a + "|" + b + "|" + c + "|" + d);
+            await SendCommand("/api/balls", a + ";" + b + ";" + c + ";" + d);
         }
 
         private async void aplus_Click(object sender, EventArgs e) {
