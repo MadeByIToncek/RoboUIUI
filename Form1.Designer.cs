@@ -59,6 +59,7 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             aminus = new Button();
             aplus = new Button();
+            button1 = new Button();
             resetBox.SuspendLayout();
             preloadBox.SuspendLayout();
             playcontrolBox.SuspendLayout();
@@ -124,6 +125,7 @@
             // 
             // preloadBox
             // 
+            preloadBox.Controls.Add(button1);
             preloadBox.Controls.Add(preload_send);
             preloadBox.Controls.Add(dropteam2);
             preloadBox.Controls.Add(dropteam1);
@@ -439,6 +441,17 @@
             aplus.UseVisualStyleBackColor = true;
             aplus.Click += aplus_Click;
             // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI Emoji", 13F);
+            button1.Location = new Point(124, 51);
+            button1.Name = "button1";
+            button1.Size = new Size(43, 33);
+            button1.TabIndex = 3;
+            button1.Text = "↔️";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -507,5 +520,6 @@
         private TableLayoutPanel tableLayoutPanel2;
         private Button aminus;
         private Button aplus;
+        private Button button1;
     }
 }

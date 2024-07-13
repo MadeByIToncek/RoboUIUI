@@ -1,42 +1,51 @@
 using System.Net.Http;
 
 namespace RoboUI2 {
-    public partial class Form1 : Form {
+    public partial class Form1 : Form
+    {
         private static readonly HttpClient client = new();
         private static readonly string address = "http://localhost:7777";
-        public Form1() {
+        public Form1()
+        {
             InitializeComponent();
             hreset_lock_CheckedChanged(null, null);
             Reset();
             LoadTeams();
         }
 
-        private async void LoadTeams() {
+        private async void LoadTeams()
+        {
             string teams = await GetProperty("/api/listTeams");
-            foreach (var item in teams.Split('\n')) {
+            foreach (var item in teams.Split('\n'))
+            {
                 dropteam1.Items.Add(item);
                 dropteam2.Items.Add(item);
             };
         }
 
-        private void hreset_lock_CheckedChanged(object sender, EventArgs e) {
+        private void hreset_lock_CheckedChanged(object sender, EventArgs e)
+        {
             hreset.Enabled = hreset_lock.Checked;
         }
 
-        private async void hreset_Click(object sender, EventArgs e) {
+        private async void hreset_Click(object sender, EventArgs e)
+        {
             await SendCommand("/api/hardreset");
             await Reset();
         }
 
-        private async void sreset_Click(object sender, EventArgs e) {
+        private async void sreset_Click(object sender, EventArgs e)
+        {
             await SendCommand("/api/reset");
             await Reset();
         }
-        private async void reset_click(object sender, EventArgs e) {
+        private async void reset_click(object sender, EventArgs e)
+        {
             await Reset();
         }
 
-        private async Task Reset() {
+        private async Task Reset()
+        {
             //dropMode.Items.Clear();
             //foreach (Mode m in Enum.GetValues<Mode>()) {
             //    dropMode.Items.Add(m.ToString());
@@ -47,8 +56,10 @@ namespace RoboUI2 {
             d = 0;
             string text = await GetProperty("/api/mode");
             bool success = Enum.TryParse(text, true, out Mode mode);
-            if (success) {
-                switch (mode) {
+            if (success)
+            {
+                switch (mode)
+                {
                     case Mode.hidden:
                     case Mode.preload:
                         //CCBox.Enabled = true;
@@ -84,97 +95,131 @@ namespace RoboUI2 {
                         targets.Enabled = false;
                         break;
                 }
-            } else {
+            }
+            else
+            {
                 throw new Exception(text);
             }
         }
 
-        private async Task<string> GetProperty(string path) {
-            try {
+        private async Task<string> GetProperty(string path)
+        {
+            try
+            {
                 return await (await client.GetAsync(address + path)).Content.ReadAsStringAsync();
-            } catch (Exception) {
+            }
+            catch (Exception)
+            {
                 return await new Task<string>(() => "");
             }
         }
 
-        private async Task SendCommand(string path) {
+        private async Task SendCommand(string path)
+        {
             await SendCommand(path, "");
         }
 
-        private async Task SendCommand(string path, string text) {
-            try {
+        private async Task SendCommand(string path, string text)
+        {
+            try
+            {
                 var response = await client.PostAsync(address + path, new StringContent(text));
-            } catch (Exception) {
+            }
+            catch (Exception)
+            {
 
             }
         }
 
-        private async void Preload_send_Click(object sender, EventArgs e) {
-            if (dropteam1.Text != dropteam2.Text) {
+        private async void Preload_send_Click(object sender, EventArgs e)
+        {
+            if (dropteam1.Text != dropteam2.Text)
+            {
                 await SendCommand("/api/changeTeams", dropteam1.Text + ";" + dropteam2.Text);
                 await Reset();
-            } else {
+            }
+            else
+            {
                 MessageBox.Show("Tým nemùže soupeøit sám proti sobì.");
             }
         }
 
-        private async void play_send_Click(object sender, EventArgs e) {
+        private async void play_send_Click(object sender, EventArgs e)
+        {
             await SendCommand("/api/play");
             await Reset();
         }
-        private async void interrupt_send_Click(object sender, EventArgs e) {
+        private async void interrupt_send_Click(object sender, EventArgs e)
+        {
             await SendCommand("/api/interrupt");
             await Reset();
         }
 
         int a = 0, b = 0, c = 0, d = 0;
-        private async Task UpdateScore() {
+        private async Task UpdateScore()
+        {
             await SendCommand("/api/balls", a + ";" + b + ";" + c + ";" + d);
         }
 
-        private async void aplus_Click(object sender, EventArgs e) {
+        private async void aplus_Click(object sender, EventArgs e)
+        {
             a += 1;
             await UpdateScore();
         }
 
-        private async void aminus_Click(object sender, EventArgs e) {
+        private async void aminus_Click(object sender, EventArgs e)
+        {
             a -= 1;
             await UpdateScore();
         }
 
-        private async void bplus_Click(object sender, EventArgs e) {
+        private async void bplus_Click(object sender, EventArgs e)
+        {
             b += 1;
             await UpdateScore();
         }
 
-        private async void bminus_Click(object sender, EventArgs e) {
+        private async void bminus_Click(object sender, EventArgs e)
+        {
             b -= 1;
             await UpdateScore();
         }
 
-        private async void cplus_Click(object sender, EventArgs e) {
+        private async void cplus_Click(object sender, EventArgs e)
+        {
             c += 1;
             await UpdateScore();
         }
 
-        private async void cminus_Click(object sender, EventArgs e) {
+        private async void cminus_Click(object sender, EventArgs e)
+        {
             c -= 1;
             await UpdateScore();
         }
 
-        private async void dplus_Click(object sender, EventArgs e) {
+        private async void dplus_Click(object sender, EventArgs e)
+        {
             d += 1;
             await UpdateScore();
         }
 
-        private async void dminus_Click(object sender, EventArgs e) {
+        private async void dminus_Click(object sender, EventArgs e)
+        {
             d -= 1;
             await UpdateScore();
         }
 
-        private async void points_send_Click(object sender, EventArgs e) {
-            await SendCommand("/api/submitScore", points1.Value+":"+ points2.Value);
+        private async void points_send_Click(object sender, EventArgs e)
+        {
+            await SendCommand("/api/submitScore", points1.Value + ":" + points2.Value);
             await Reset();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int temp = dropteam1.SelectedIndex;
+            dropteam1.SelectedIndex = dropteam2.SelectedIndex;
+            dropteam2.SelectedIndex = temp;
         }
     }
 }
