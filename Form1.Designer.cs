@@ -26,7 +26,8 @@
         ///  Required method for Designer support - do not modify
         ///  the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             resetBox = new GroupBox();
             hreset_lock = new CheckBox();
             sreset = new Button();
@@ -42,18 +43,8 @@
             points_send = new Button();
             points2 = new NumericUpDown();
             points1 = new NumericUpDown();
-            CCBox = new GroupBox();
-            cc_send = new Button();
-            tvPort = new TextBox();
-            tvIP = new TextBox();
-            streamPort = new TextBox();
-            streamIP = new TextBox();
             label1 = new Label();
             teams = new Label();
-            targetURL = new TextBox();
-            button1 = new Button();
-            dropMode = new ComboBox();
-            modechg_send = new Button();
             targets = new GroupBox();
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel5 = new TableLayoutPanel();
@@ -74,7 +65,6 @@
             resultsBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)points2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)points1).BeginInit();
-            CCBox.SuspendLayout();
             targets.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
@@ -150,7 +140,7 @@
             preload_send.Name = "preload_send";
             preload_send.Size = new Size(90, 33);
             preload_send.TabIndex = 2;
-            preload_send.Text = "Load";
+            preload_send.Text = "Start playout";
             preload_send.UseVisualStyleBackColor = true;
             preload_send.Click += Preload_send_Click;
             // 
@@ -183,22 +173,25 @@
             // 
             // interrupt_send
             // 
+            interrupt_send.BackColor = Color.Orange;
             interrupt_send.Location = new Point(87, 22);
             interrupt_send.Name = "interrupt_send";
             interrupt_send.Size = new Size(75, 46);
             interrupt_send.TabIndex = 2;
             interrupt_send.Text = "Interrupt";
-            interrupt_send.UseVisualStyleBackColor = true;
+            interrupt_send.UseVisualStyleBackColor = false;
             interrupt_send.Click += interrupt_send_Click;
             // 
             // play_send
             // 
+            play_send.BackColor = Color.LightGreen;
+            play_send.Font = new Font("Segoe UI", 8F);
             play_send.Location = new Point(6, 22);
             play_send.Name = "play_send";
             play_send.Size = new Size(75, 46);
             play_send.TabIndex = 0;
-            play_send.Text = "Play";
-            play_send.UseVisualStyleBackColor = true;
+            play_send.Text = "Start countdown";
+            play_send.UseVisualStyleBackColor = false;
             play_send.Click += play_send_Click;
             // 
             // resultsBox
@@ -206,7 +199,7 @@
             resultsBox.Controls.Add(points_send);
             resultsBox.Controls.Add(points2);
             resultsBox.Controls.Add(points1);
-            resultsBox.Location = new Point(188, 194);
+            resultsBox.Location = new Point(12, 467);
             resultsBox.Name = "resultsBox";
             resultsBox.Size = new Size(150, 89);
             resultsBox.TabIndex = 3;
@@ -237,70 +230,15 @@
             points1.Size = new Size(65, 23);
             points1.TabIndex = 0;
             // 
-            // CCBox
-            // 
-            CCBox.Controls.Add(cc_send);
-            CCBox.Controls.Add(tvPort);
-            CCBox.Controls.Add(tvIP);
-            CCBox.Controls.Add(streamPort);
-            CCBox.Controls.Add(streamIP);
-            CCBox.Location = new Point(303, 79);
-            CCBox.Name = "CCBox";
-            CCBox.Size = new Size(274, 112);
-            CCBox.TabIndex = 4;
-            CCBox.TabStop = false;
-            CCBox.Text = "Setup CC";
-            // 
-            // cc_send
-            // 
-            cc_send.Location = new Point(204, 80);
-            cc_send.Name = "cc_send";
-            cc_send.Size = new Size(64, 26);
-            cc_send.TabIndex = 5;
-            cc_send.Text = "Config";
-            cc_send.UseVisualStyleBackColor = true;
-            // 
-            // tvPort
-            // 
-            tvPort.Location = new Point(178, 51);
-            tvPort.Name = "tvPort";
-            tvPort.PlaceholderText = "5250";
-            tvPort.Size = new Size(90, 23);
-            tvPort.TabIndex = 3;
-            // 
-            // tvIP
-            // 
-            tvIP.Location = new Point(6, 51);
-            tvIP.Name = "tvIP";
-            tvIP.PlaceholderText = "127.0.0.1";
-            tvIP.Size = new Size(166, 23);
-            tvIP.TabIndex = 2;
-            // 
-            // streamPort
-            // 
-            streamPort.Location = new Point(178, 22);
-            streamPort.Name = "streamPort";
-            streamPort.PlaceholderText = "5250";
-            streamPort.Size = new Size(90, 23);
-            streamPort.TabIndex = 1;
-            // 
-            // streamIP
-            // 
-            streamIP.Location = new Point(6, 22);
-            streamIP.Name = "streamIP";
-            streamIP.PlaceholderText = "127.0.0.1";
-            streamIP.Size = new Size(166, 23);
-            streamIP.TabIndex = 0;
-            // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 48F, FontStyle.Bold);
-            label1.Location = new Point(316, 405);
+            label1.Location = new Point(12, 559);
             label1.Name = "label1";
-            label1.Size = new Size(261, 86);
+            label1.Size = new Size(327, 86);
             label1.TabIndex = 5;
-            label1.Text = "RoboUI";
+            label1.Text = "RoboUIUI";
             // 
             // teams
             // 
@@ -312,49 +250,12 @@
             teams.Size = new Size(0, 21);
             teams.TabIndex = 6;
             // 
-            // targetURL
-            // 
-            targetURL.Location = new Point(304, 34);
-            targetURL.Name = "targetURL";
-            targetURL.Size = new Size(192, 23);
-            targetURL.TabIndex = 6;
-            targetURL.Text = "http://127.0.0.1:7777";
-            // 
-            // button1
-            // 
-            button1.Location = new Point(502, 34);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 7;
-            button1.Text = "Reset";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += reset_click;
-            // 
-            // dropMode
-            // 
-            dropMode.FormattingEnabled = true;
-            dropMode.Location = new Point(456, 200);
-            dropMode.Name = "dropMode";
-            dropMode.Size = new Size(121, 23);
-            dropMode.TabIndex = 8;
-            // 
-            // modechg_send
-            // 
-            modechg_send.Font = new Font("Segoe UI", 8F);
-            modechg_send.Location = new Point(386, 194);
-            modechg_send.Name = "modechg_send";
-            modechg_send.Size = new Size(64, 35);
-            modechg_send.TabIndex = 6;
-            modechg_send.Text = "Change mode";
-            modechg_send.UseVisualStyleBackColor = true;
-            modechg_send.Click += modechg_send_Click;
-            // 
             // targets
             // 
             targets.Controls.Add(tableLayoutPanel1);
-            targets.Location = new Point(12, 289);
+            targets.Location = new Point(12, 256);
             targets.Name = "targets";
-            targets.Size = new Size(307, 205);
+            targets.Size = new Size(322, 205);
             targets.TabIndex = 9;
             targets.TabStop = false;
             targets.Text = "Cíle";
@@ -374,7 +275,7 @@
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(292, 177);
+            tableLayoutPanel1.Size = new Size(310, 177);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel5
@@ -384,11 +285,11 @@
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.Controls.Add(dminus, 1, 0);
             tableLayoutPanel5.Controls.Add(dplus, 0, 0);
-            tableLayoutPanel5.Location = new Point(149, 92);
+            tableLayoutPanel5.Location = new Point(158, 92);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 1;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel5.Size = new Size(139, 81);
+            tableLayoutPanel5.Size = new Size(148, 81);
             tableLayoutPanel5.TabIndex = 3;
             // 
             // dminus
@@ -396,9 +297,9 @@
             dminus.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dminus.AutoSize = true;
             dminus.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            dminus.Location = new Point(72, 3);
+            dminus.Location = new Point(77, 3);
             dminus.Name = "dminus";
-            dminus.Size = new Size(64, 75);
+            dminus.Size = new Size(68, 75);
             dminus.TabIndex = 4;
             dminus.Text = "-";
             dminus.UseVisualStyleBackColor = true;
@@ -411,7 +312,7 @@
             dplus.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             dplus.Location = new Point(3, 3);
             dplus.Name = "dplus";
-            dplus.Size = new Size(63, 75);
+            dplus.Size = new Size(68, 75);
             dplus.TabIndex = 2;
             dplus.Text = "+";
             dplus.UseVisualStyleBackColor = true;
@@ -424,12 +325,12 @@
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel4.Controls.Add(cminus, 0, 0);
             tableLayoutPanel4.Controls.Add(cplus, 0, 0);
-            tableLayoutPanel4.Location = new Point(149, 4);
+            tableLayoutPanel4.Location = new Point(158, 4);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 1;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel4.Size = new Size(139, 81);
+            tableLayoutPanel4.Size = new Size(148, 81);
             tableLayoutPanel4.TabIndex = 2;
             // 
             // cminus
@@ -437,9 +338,9 @@
             cminus.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             cminus.AutoSize = true;
             cminus.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            cminus.Location = new Point(72, 3);
+            cminus.Location = new Point(77, 3);
             cminus.Name = "cminus";
-            cminus.Size = new Size(64, 75);
+            cminus.Size = new Size(68, 75);
             cminus.TabIndex = 4;
             cminus.Text = "-";
             cminus.UseVisualStyleBackColor = true;
@@ -452,7 +353,7 @@
             cplus.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             cplus.Location = new Point(3, 3);
             cplus.Name = "cplus";
-            cplus.Size = new Size(63, 75);
+            cplus.Size = new Size(68, 75);
             cplus.TabIndex = 1;
             cplus.Text = "+";
             cplus.UseVisualStyleBackColor = true;
@@ -469,7 +370,7 @@
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Size = new Size(138, 81);
+            tableLayoutPanel3.Size = new Size(147, 81);
             tableLayoutPanel3.TabIndex = 1;
             // 
             // bminus
@@ -477,9 +378,9 @@
             bminus.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             bminus.AutoSize = true;
             bminus.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            bminus.Location = new Point(72, 3);
+            bminus.Location = new Point(76, 3);
             bminus.Name = "bminus";
-            bminus.Size = new Size(63, 75);
+            bminus.Size = new Size(68, 75);
             bminus.TabIndex = 4;
             bminus.Text = "-";
             bminus.UseVisualStyleBackColor = true;
@@ -492,7 +393,7 @@
             bplus.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             bplus.Location = new Point(3, 3);
             bplus.Name = "bplus";
-            bplus.Size = new Size(63, 75);
+            bplus.Size = new Size(67, 75);
             bplus.TabIndex = 1;
             bplus.Text = "+";
             bplus.UseVisualStyleBackColor = true;
@@ -509,7 +410,7 @@
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(138, 81);
+            tableLayoutPanel2.Size = new Size(147, 81);
             tableLayoutPanel2.TabIndex = 0;
             // 
             // aminus
@@ -517,9 +418,9 @@
             aminus.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             aminus.AutoSize = true;
             aminus.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            aminus.Location = new Point(72, 3);
+            aminus.Location = new Point(76, 3);
             aminus.Name = "aminus";
-            aminus.Size = new Size(63, 75);
+            aminus.Size = new Size(68, 75);
             aminus.TabIndex = 3;
             aminus.Text = "-";
             aminus.UseVisualStyleBackColor = true;
@@ -532,7 +433,7 @@
             aplus.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             aplus.Location = new Point(3, 3);
             aplus.Name = "aplus";
-            aplus.Size = new Size(63, 75);
+            aplus.Size = new Size(67, 75);
             aplus.TabIndex = 0;
             aplus.Text = "+";
             aplus.UseVisualStyleBackColor = true;
@@ -542,21 +443,16 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(589, 506);
+            ClientSize = new Size(346, 648);
             Controls.Add(targets);
-            Controls.Add(modechg_send);
-            Controls.Add(dropMode);
-            Controls.Add(button1);
             Controls.Add(label1);
-            Controls.Add(targetURL);
             Controls.Add(teams);
-            Controls.Add(CCBox);
             Controls.Add(resultsBox);
             Controls.Add(playcontrolBox);
             Controls.Add(preloadBox);
             Controls.Add(resetBox);
             Name = "Form1";
-            Text = "RoboUI Controller";
+            Text = "RoboUIUI";
             resetBox.ResumeLayout(false);
             resetBox.PerformLayout();
             preloadBox.ResumeLayout(false);
@@ -564,8 +460,6 @@
             resultsBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)points2).EndInit();
             ((System.ComponentModel.ISupportInitialize)points1).EndInit();
-            CCBox.ResumeLayout(false);
-            CCBox.PerformLayout();
             targets.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel5.ResumeLayout(false);
@@ -597,18 +491,8 @@
         private Button points_send;
         private NumericUpDown points2;
         private NumericUpDown points1;
-        private GroupBox CCBox;
-        private TextBox tvPort;
-        private TextBox tvIP;
-        private TextBox streamPort;
-        private TextBox streamIP;
         private Label label1;
-        private Button cc_send;
         private Label teams;
-        private TextBox targetURL;
-        private Button button1;
-        private Button modechg_send;
-        private ComboBox dropMode;
         private GroupBox targets;
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel5;

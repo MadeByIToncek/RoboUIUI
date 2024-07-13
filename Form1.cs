@@ -3,6 +3,7 @@ using System.Net.Http;
 namespace RoboUI2 {
     public partial class Form1 : Form {
         private static readonly HttpClient client = new();
+        private static readonly string address = "http://localhost:7777";
         public Form1() {
             InitializeComponent();
             hreset_lock_CheckedChanged(null, null);
@@ -36,10 +37,10 @@ namespace RoboUI2 {
         }
 
         private async Task Reset() {
-            dropMode.Items.Clear();
-            foreach (Mode m in Enum.GetValues<Mode>()) {
-                dropMode.Items.Add(m.ToString());
-            }
+            //dropMode.Items.Clear();
+            //foreach (Mode m in Enum.GetValues<Mode>()) {
+            //    dropMode.Items.Add(m.ToString());
+            //}
             a = 0;
             b = 0;
             c = 0;
@@ -50,7 +51,7 @@ namespace RoboUI2 {
                 switch (mode) {
                     case Mode.hidden:
                     case Mode.preload:
-                        CCBox.Enabled = true;
+                        //CCBox.Enabled = true;
                         resetBox.Enabled = true;
                         preloadBox.Enabled = true;
                         playcontrolBox.Enabled = false;
@@ -59,7 +60,7 @@ namespace RoboUI2 {
                         break;
                     case Mode.loaded:
                     case Mode.ingame:
-                        CCBox.Enabled = true;
+                        //CCBox.Enabled = true;
                         resetBox.Enabled = true;
                         preloadBox.Enabled = false;
                         playcontrolBox.Enabled = true;
@@ -67,7 +68,7 @@ namespace RoboUI2 {
                         targets.Enabled = true;
                         break;
                     case Mode.counting:
-                        CCBox.Enabled = true;
+                        //CCBox.Enabled = true;
                         resetBox.Enabled = true;
                         preloadBox.Enabled = false;
                         playcontrolBox.Enabled = false;
@@ -75,7 +76,7 @@ namespace RoboUI2 {
                         targets.Enabled = false;
                         break;
                     case Mode.results:
-                        CCBox.Enabled = true;
+                        //CCBox.Enabled = true;
                         resetBox.Enabled = true;
                         preloadBox.Enabled = false;
                         playcontrolBox.Enabled = false;
@@ -90,7 +91,7 @@ namespace RoboUI2 {
 
         private async Task<string> GetProperty(string path) {
             try {
-                return await (await client.GetAsync(targetURL.Text + path)).Content.ReadAsStringAsync();
+                return await (await client.GetAsync(address + path)).Content.ReadAsStringAsync();
             } catch (Exception) {
                 return await new Task<string>(() => "");
             }
@@ -102,16 +103,9 @@ namespace RoboUI2 {
 
         private async Task SendCommand(string path, string text) {
             try {
-                var response = await client.PostAsync(targetURL.Text + path, new StringContent(text));
+                var response = await client.PostAsync(address + path, new StringContent(text));
             } catch (Exception) {
 
-            }
-        }
-
-        private async void modechg_send_Click(object sender, EventArgs e) {
-            if (dropMode.Text != null) {
-                await SendCommand("/api/changeMode", dropMode.Text);
-                await Reset();
             }
         }
 
